@@ -133,23 +133,33 @@ coef(spruce.lm)
 # Regression analysis of variance table
 #Can you find some of the ss in here?
 anova(spruce.lm)
+
+
+TSS = round(TSS, 4)
+MSS = round(MSS, 4)
+RSS = round(RSS, 4)
+
+TSS
+MSS
+RSS
+
+
 ```
 
 
+TSS = `r TSS`
+MSS = `r MSS`
+RSS = `r RSS`
 
+$\frac{MSS}{TSS} = \frac{522.2756}{278.9475} = 1.8723$
 
+The proportion of the total variability of the outcomes is accounted for by the model is 1.8723.
 
-# Me
+MSS + RSS = 562.317
 
-```{r}
-obj = lm(Height~BHDiameter, data = spruce.df)
-summary(obj)
-plot(Height~BHDiameter, data = spruce.df)
-abline(obj)
-library(s20x)
-trendscatter(Height~BHDiameter,f=0.7, data=spruce.df)
-```
+and TSS = 522.2756
 
+Thus, TSS is not equal to the sum of MSS and RSS, however it is close. 
 
 
 #Task 7
