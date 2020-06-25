@@ -1,0 +1,140 @@
+---
+title: "Lab 3: MATH 4753"
+author: "YBailey Looper"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    theme: spacelab
+    highlight: pygments
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Task 1
+
+WD
+
+```{r}
+getwd()
+```
+
+# Task 2
+
+```{r}
+spruce.df = read.csv("SPRUCE.csv")
+head(spruce.df)
+```
+
+# Task 3
+
+```{r}
+spruce = read.csv("SPRUCE.csv")
+plot(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", pch = 21, bg = "blue", cex = 1.2, xlim = c(0, max(spruce$BHDiameter)*1.1), ylim = c(0, max(spruce$Height)*1.1))
+```
+
+There does not appear to be a straight line relationship in regards to Tree Height vs Breast Height Diameter.
+
+```{r}
+library(s20x)
+
+layout(matrix(1:4, nr=2,nc=2))
+
+trendscatter(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", f = 0.5)
+
+trendscatter(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", f = 0.6)
+
+trendscatter(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", f = 0.7)
+```
+
+
+
+```{r}
+spruce.lm = lm(spruce)
+
+plot(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", pch = 21, bg = "blue", cex = 1.2, xlim = c(0, max(spruce$BHDiameter)*1.1), ylim = c(0, max(spruce$Height)*1.1))
+abline(spruce.lm)
+```
+
+The straight line is not a proper model for this graph, because the trend shows the graph flattening off at a maximum height of about 20 meters when the Breast Height Diameter is between 15 and 20.
+
+# Task 4
+
+```{r}
+layout(matrix(1:4, nr=2,nc=2))
+layout.show(4)
+
+#first square
+plot(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", pch = 21, bg = "blue")
+abline(spruce.lm)
+
+#second square
+
+with(spruce, 
+plot(spruce$Height~spruce$BHDiameter,main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", bg="Blue",pch=21,ylim=c(0,1.1*max(spruce$Height)),xlim=c(0,1.1*max(spruce$BHDiameter)))
+)
+
+#make yhat the estimates of E[HEAT | RATIO]
+
+#OR you could use -- (yhat values the predicted values for all the RATIO values )
+yhat=fitted(spruce.lm)
+
+# Draw in segments making the residuals (regression deviations)
+with(spruce,{
+segments(spruce$BHDiameter,spruce$Height,spruce$BHDiameter,yhat)
+})
+abline(spruce.lm)
+
+#residual sum of squares
+RSS=with(spruce,sum((spruce$Height-yhat)^2))
+
+RSS
+
+#third square
+#make a new plot
+with(spruce, 
+plot(spruce$Height~spruce$BHDiameter,main = "Mean of Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Mean of Height of the Tree (m)", bg="Blue",pch=21,ylim=c(0,1.1*max(spruce$Height)),xlim=c(0,1.1*max(spruce$BHDiameter)))
+)
+
+#make nieve model
+with(spruce, abline(h=mean(spruce$Height)))
+abline(spruce)
+
+#make the explained deviations (explained by the model)
+with(spruce, segments(spruce$BHDiameter,mean(spruce$Height),spruce$BHDiameter,yhat,col="Red"))
+MSS=with(spruce,sum((yhat-mean(spruce$Height))^2))
+MSS
+
+#fourth square
+
+
+```
+
+
+
+
+
+# Me
+
+```{r}
+obj = lm(Height~BHDiameter, data = spruce.df)
+summary(obj)
+plot(Height~BHDiameter, data = spruce.df)
+abline(obj)
+library(s20x)
+trendscatter(Height~BHDiameter,f=0.7, data=spruce.df)
+```
+
+
+
+#Task 7
+This is how you place images in RMD documents
+
+<center>
+!["name of image"](gheat.png){ width=70% }
+</center>
+
+
