@@ -109,8 +109,30 @@ MSS=with(spruce,sum((yhat-mean(spruce$Height))^2))
 MSS
 
 #fourth square
+# Total  error
+#make a new plot
+with(spruce, 
+plot(spruce$Height~spruce$BHDiameter,main = "Mean of Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Mean of Height of the Tree (m)",bg="Blue",pch=21,ylim=c(0,1.1*max(spruce$Height)),xlim=c(0,1.1*max(spruce$BHDiameter)))
+)
+with(spruce,abline(h=mean(spruce$Height)))
+with(spruce, segments(spruce$BHDiameter,spruce$Height,spruce$BHDiameter,mean(spruce$Height),col="Green"))
+TSS=with(spruce,sum((spruce$Height-mean(spruce$Height))^2))
+TSS
+RSS + MSS
 
+#Can you find this number in the summary info?
+MSS/TSS
 
+summary(spruce.lm)
+#intercept =    0.2134
+#Slope =     2.4264
+# Equation HEAT=0.2134 +2.4264*RATIO
+#Get coeffts
+coef(spruce.lm)
+
+# Regression analysis of variance table
+#Can you find some of the ss in here?
+anova(spruce.lm)
 ```
 
 
