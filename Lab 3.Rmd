@@ -114,32 +114,32 @@ plot(spruce$Height~spruce$BHDiameter,main = "TSS", xlab = "BHDiameter (cm)", yla
 )
 with(spruce,abline(h=mean(spruce$Height)))
 with(spruce, segments(spruce$BHDiameter,spruce$Height,spruce$BHDiameter,mean(spruce$Height),col="Green"))
-
-TSS = with(spruce, sum((spruce$Height - mean(spruce$Height))^2))
-MSS = with(spruce, sum((yhat-mean(spruce$Height))^2))
-RSS = sum((spruce$Height-yhat)^2)
 ```
 
 TSS
 ```{r}
 TSS = with(spruce, sum((spruce$Height - mean(spruce$Height))^2))
 TSS
-```
-
-MSS
-```{r}
-MSS = with(spruce, sum((yhat-mean(spruce$Height))^2))
-MSS
-```
-
-RSS
-```{r}
-RSS = sum((spruce$Height-yhat)^2)
-RSS
 ```
 
 TSS = `r TSS`
+
+
+MSS
+```{r}
+MSS = with(spruce, sum((yhat-mean(spruce$Height))^2))
+MSS
+```
+
 MSS = `r MSS`
+
+
+RSS
+```{r}
+RSS = sum((spruce$Height-yhat)^2)
+RSS
+```
+
 RSS = `r RSS`
 
 
