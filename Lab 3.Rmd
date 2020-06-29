@@ -182,7 +182,13 @@ g+ggtitle("Tree Height Vs Breast Height Diameter")
 This is how you place images in RMD documents
 
 <center>
-!["name of image"](gheat.png){ width=70% }
+!["name of image"](g.png){ width=70% }
 </center>
 
+<center>
+!["name of image"](gline.png){ width=70% }
+</center>
 
+<center>
+!["name of image"](gsegments.png){ width=70% }
+</center>
