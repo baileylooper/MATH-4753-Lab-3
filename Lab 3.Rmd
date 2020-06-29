@@ -53,7 +53,7 @@ trendscatter(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Br
 
 
 ```{r}
-spruce.lm = lm(spruce)
+spruce.lm = lm(formula=spruce$Height~spruce$BHDiameter)
 
 plot(x = spruce$BHDiameter, y = spruce$Height, main = "Tree Height vs Breast Height Diameter", xlab = "BHDiameter (cm)", ylab = "Height of the Tree (m)", pch = 21, bg = "blue", cex = 1.2, xlim = c(0, max(spruce$BHDiameter)*1.1), ylim = c(0, max(spruce$Height)*1.1))
 abline(spruce.lm)
@@ -119,19 +119,41 @@ TSS = with(spruce, sum((spruce$Height - mean(spruce$Height))^2))
 MSS = with(spruce, sum((yhat-mean(spruce$Height))^2))
 RSS = sum((spruce$Height-yhat)^2)
 ```
-```{r, include=FALSE}
-MSS = 183.2447
-RSS=95.70281
+
+TSS
+```{r}
+TSS = with(spruce, sum((spruce$Height - mean(spruce$Height))^2))
+TSS
 ```
 
+MSS
+```{r}
+MSS = with(spruce, sum((yhat-mean(spruce$Height))^2))
+MSS
+```
+
+RSS
+```{r}
+RSS = sum((spruce$Height-yhat)^2)
+RSS
+```
 
 TSS = `r TSS`
 MSS = `r MSS`
 RSS = `r RSS`
 
+
+```{r}
+MSS/TSS
+```
+
 $\frac{MSS}{TSS} = \frac{183.2447}{278.9475} = 0.6569$
 
 The proportion of the total variability of the outcomes is accounted for by the model is 0.6569, which is not particularly high, thus it gives further reason to the conclusion that a straight line is not a best fit for the data.
+
+```{r}
+MSS+RSS
+```
 
 MSS + RSS = 278.9475
 
@@ -141,6 +163,7 @@ Thus, TSS is equal to the sum of MSS and RSS, they are both 278.9475.
 
 # Task 5
 ```{r}
+spruce.lm=lm(formula = spruce$Height~spruce$BHDiameter)
 summary(spruce.lm)
 ```
 
@@ -148,25 +171,25 @@ summary(spruce.lm)
 coef(spruce.lm)
 ```
 
-Slope = 1.364
+Slope = 0.4814743
 
-Intercept = -6.2366
+Intercept = 9.1468390 
 
 Equation of the Fitted Line
 
 $Height = \hat{\beta}_0+\hat{\beta}_1x$
 
-$Height = -6.2364 +1.3644x$
+$Height = 9.1468 +0.4815x$
 
 ```{r}
--6.2364 +1.3644*(15)
--6.2364 +1.3644*(18)
--6.2364 +1.3644*(20)
+9.1468 +0.4815*(15)
+9.1468 +0.4815*(18)
+9.1468 +0.4815*(20)
 ```
 
-When BHD=15, Height = 14.2296.
-When BHD=18, Height = 18.3228.
-When BHD=20, Height = 21.0516.
+When BHD=15, Height = 16.3693.
+When BHD=18, Height = 17.8138.
+When BHD=20, Height = 18.7768.
 
 # Task 6
 
