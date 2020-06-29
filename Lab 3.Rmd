@@ -139,8 +139,46 @@ and TSS = 278.9475
 
 Thus, TSS is equal to the sum of MSS and RSS, they are both 278.9475. 
 
+# Task 5
+```{r}
+summary(spruce.lm)
+```
 
-#Task 7
+```{r}
+coef(spruce.lm)
+```
+
+Slope = 1.364
+
+Intercept = -6.2366
+
+Equation of the Fitted Line
+
+$Height = \hat{\beta}_0+\hat{\beta}_1x$
+
+$Height = -6.2364 +1.3644x$
+
+```{r}
+-6.2364 +1.3644*(15)
+-6.2364 +1.3644*(18)
+-6.2364 +1.3644*(20)
+```
+
+When BHD=15, Height = 14.2296.
+When BHD=18, Height = 18.3228.
+When BHD=20, Height = 21.0516.
+
+# Task 6
+
+```{r}
+library(ggplot2)
+g=ggplot(spruce, aes(x=BHDiameter,y=Height,colour=BHDiameter))
+g=g+geom_point() + geom_line()+ geom_smooth(method="lm")
+g+ggtitle("Tree Height Vs Breast Height Diameter")
+```
+
+
+# Task 7
 This is how you place images in RMD documents
 
 <center>
